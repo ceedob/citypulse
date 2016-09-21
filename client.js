@@ -2,14 +2,14 @@ var canvas = document.createElement('canvas');
 
 var ctx = canvas.getContext('2d');
 
-var speed = Math.min(window.innerWidth, window.innerHeight * 16 / 9);
+var speed = Math.max(window.innerWidth, window.innerHeight * window.innerHeight/window.innerWidth );
 
 var setCanvasSize = function(){
   canvas.width = speed;
-  canvas.height = speed * 9/16;
+  canvas.height = speed * window.innerHeight/window.innerWidth;
 
   document.getElementById('canvas').width = speed;
-  document.getElementById('canvas').height = speed * 9/16;
+  document.getElementById('canvas').height = speed * window.innerHeight/window.innerWidth;
   // ctx.resetTransform();
   // ctx.clearRect(43.6614818, -79.501092, 1, 1);
   //
@@ -141,7 +141,7 @@ var draw = function(){
 
   for(var i = 0; i < data.length; i+= 1){
     // console.log(1000/ (Date.now()+1000 - data[i][3]), 1-(Date.now() - data[i][3])/30000)
-    var age = (Date.now() - data[i][3])/100 % 35
+    var age = Math.max(0, Date.now() - data[i][3] - 10000 )/250 % 35
     // if(age > 1000) continue;
     var opacity = 1/(1 + Math.exp(age/5 - 5));
     // var width =
@@ -165,15 +165,15 @@ setCanvasSize();
 setInterval(function(){
   window.requestAnimationFrame(draw);
 }, 16);
-setInterval(function(){
-  window.requestAnimationFrame(function(){
-    if((1000/diff < 15 && speed > window.innerWidth / 3) || speed > window.innerWidth){
-      speed -= diff;
-      setCanvasSize();
-    } else if(diff < 16 || speed > window.innerWidth){
-      speed += 10;
-      setCanvasSize();
-    }
-    draw();
-  });
-}, 10000);
+// setInterval(function(){
+//   window.requestAnimationFrame(function(){
+//     if((1000/diff < 15 && speed > window.innerWidth / 2) || speed > window.innerWidth){
+//       speed -= diff;
+//       setCanvasSize();
+//     } else if(diff < 16 || speed > window.innerWidth){
+//       speed += 10;
+//       setCanvasSize();
+//     }
+//     draw();
+//   });
+// }, 10000);
