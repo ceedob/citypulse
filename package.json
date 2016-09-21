@@ -1,0 +1,17 @@
+{
+  "name": "citypulse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Chris Dobson",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "request": "^2.75.0",
+    "xml2js": "^0.4.17"
+  }
+}
